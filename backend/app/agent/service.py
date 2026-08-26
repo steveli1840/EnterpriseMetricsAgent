@@ -287,7 +287,7 @@ class AgentService:
                 route = "explore" if not intent.get("direct_answer") else "direct"
 
         if route == "metric":
-            metric_name = intent.get("metric")
+            metric_name = self._coerce_metric_name(intent.get("metric"))
             selected = next(
                 (
                     m
@@ -314,7 +314,7 @@ class AgentService:
                 end = end or mem_end
             dimensions = [
                 d
-                for d in intent.get("dimensions", [])
+                for d in self._coerce_dimension_list(intent.get("dimensions"))
                 if d in selected.allowed_dimensions
             ]
             return ResolvedIntent(
@@ -436,6 +436,33 @@ class AgentService:
         start = window.get("start") or None
         end = window.get("end") or None
         return start, end
+
+    @staticmethod
+    def _coerce_metric_name(value: object) -> str | None:
+        if isinstance(value, list):
+            value = value[0] if value else None
+        if isinstance(value, dict):
+            value = value.get("name") or value.get("metric")
+        if isinstance(value, str):
+            name = value.strip()
+            return name or None
+        return None
+
+    @staticmethod
+    def _coerce_dimension_list(value: object) -> list[str]:
+        if value is None:
+            return []
+        if isinstance(value, str):
+            value = [value]
+        if not isinstance(value, list):
+            return []
+        names: list[str] = []
+        for item in value:
+            if isinstance(item, dict):
+                item = item.get("name") or item.get("dimension")
+            if isinstance(item, str) and item.strip():
+                names.append(item.strip())
+        return names
 
     @staticmethod
     def _format_metric_dimensions(metric: MetricDefinition) -> str:

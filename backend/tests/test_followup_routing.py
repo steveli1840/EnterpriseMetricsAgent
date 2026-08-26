@@ -65,3 +65,15 @@ async def test_affirm_followup_runs_metric_with_pending_dimension():
     assert intent.dimensions == ["product_category"]
     assert intent.start == "2018-01-01"
     assert intent.end == "2019-01-01"
+
+
+def test_coerce_metric_name_normalizes_llm_shapes():
+    assert AgentService._coerce_metric_name("delivered_revenue") == "delivered_revenue"
+    assert AgentService._coerce_metric_name(["delivered_revenue"]) == "delivered_revenue"
+    assert AgentService._coerce_metric_name({"name": "gmv"}) == "gmv"
+    assert AgentService._coerce_dimension_list("customer_state") == ["customer_state"]
+    assert AgentService._coerce_dimension_list(["customer_state", {"name": "month"}]) == [
+        "customer_state",
+        "month",
+    ]
+
