@@ -86,4 +86,4 @@ Reset local state:
 docker compose down -v
 ```
 
-Architecture and trust boundaries are documented in [docs/HLD.md](docs/HLD.md).
+Architecture and trust boundaries are documented in [docs/HLD.md](docs/HLD.md)（[中文](docs/HLD.zh.md)）.

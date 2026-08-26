@@ -1,5 +1,7 @@
 # MetricLens High-Level Design
 
+中文版：[HLD.zh.md](./HLD.zh.md)
+
 ## 1. Purpose and boundaries
 
 MetricLens serves internal data analysts who need fast answers without bypassing metric governance.
