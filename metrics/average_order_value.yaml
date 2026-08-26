@@ -1,0 +1,14 @@
+name: average_order_value
+version: 1
+label: 客单价
+description: 已交付订单项金额的平均值；首版按订单项近似，界面中明确口径。
+model: analytics.fct_order_items
+expression: price + freight_value
+aggregation: avg
+time_dimension: order_purchase_at
+grain: order_item
+allowed_dimensions: [customer_state, product_category, seller_state, month]
+filters: ["order_status = 'delivered'"]
+owner: analytics
+status: published
+

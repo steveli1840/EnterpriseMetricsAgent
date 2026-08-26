@@ -1,0 +1,14 @@
+name: gmv
+version: 1
+label: GMV
+description: 所有非取消订单的商品价格之和，不含运费。
+model: analytics.fct_order_items
+expression: price
+aggregation: sum
+time_dimension: order_purchase_at
+grain: order_item
+allowed_dimensions: [customer_state, product_category, seller_state, month]
+filters: ["order_status != 'canceled'"]
+owner: finance_analytics
+status: published
+

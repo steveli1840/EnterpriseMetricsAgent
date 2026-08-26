@@ -1,0 +1,14 @@
+name: delivered_revenue
+version: 1
+label: 已交付收入
+description: 已交付订单的商品价格与运费之和。
+model: analytics.fct_order_items
+expression: price + freight_value
+aggregation: sum
+time_dimension: order_purchase_at
+grain: order_item
+allowed_dimensions: [customer_state, product_category, seller_state, month]
+filters: ["order_status = 'delivered'"]
+owner: analytics
+status: published
+

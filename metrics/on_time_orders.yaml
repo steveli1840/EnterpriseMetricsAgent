@@ -1,0 +1,14 @@
+name: on_time_orders
+version: 1
+label: 准时交付订单数
+description: 在预计日期前完成交付的去重订单数。
+model: analytics.fct_orders
+expression: "if(order_delivered_customer_at <= order_estimated_delivery_at, order_id, NULL)"
+aggregation: count_distinct
+time_dimension: order_purchase_at
+grain: order
+allowed_dimensions: [customer_state, month]
+filters: ["order_status = 'delivered'"]
+owner: logistics_analytics
+status: published
+

@@ -1,0 +1,14 @@
+name: canceled_orders
+version: 1
+label: 取消订单数
+description: 状态为 canceled 的去重订单数。
+model: analytics.fct_order_items
+expression: order_id
+aggregation: count_distinct
+time_dimension: order_purchase_at
+grain: order
+allowed_dimensions: [customer_state, product_category, seller_state, month]
+filters: ["order_status = 'canceled'"]
+owner: operations_analytics
+status: published
+

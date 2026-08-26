@@ -1,0 +1,14 @@
+name: repeat_customers
+version: 1
+label: 复购客户数
+description: 在观察数据中完成超过一个订单的去重客户数。
+model: analytics.customer_order_summary
+expression: customer_unique_id
+aggregation: count_distinct
+time_dimension: first_order_at
+grain: customer
+allowed_dimensions: [customer_state, month]
+filters: ["order_count > 1"]
+owner: customer_analytics
+status: published
+

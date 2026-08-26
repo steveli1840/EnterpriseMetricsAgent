@@ -1,0 +1,25 @@
+<clickhouse>
+  <users>
+    <agent_readonly>
+      <password>readonly-demo</password>
+      <profile>readonly</profile>
+      <quota>default</quota>
+      <networks><ip>::/0</ip></networks>
+      <grants>
+        <query>GRANT SELECT ON analytics.*</query>
+        <query>GRANT SELECT ON raw_olist.*</query>
+        <query>GRANT SELECT ON system.columns</query>
+        <query>GRANT SELECT ON system.tables</query>
+      </grants>
+    </agent_readonly>
+  </users>
+  <profiles>
+    <readonly>
+      <readonly>1</readonly>
+      <max_execution_time>30</max_execution_time>
+      <max_result_rows>1000</max_result_rows>
+      <result_overflow_mode>break</result_overflow_mode>
+    </readonly>
+  </profiles>
+</clickhouse>
+

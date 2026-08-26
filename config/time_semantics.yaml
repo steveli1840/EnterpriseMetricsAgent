@@ -1,0 +1,6 @@
+# Organizational time semantics for MetricLens.
+# Tools read this file; prompts must not redefine week meaning.
+
+timezone: Asia/Shanghai
+week_definition: iso_week  # iso_week | trailing_7_days
+week_start: monday         # used when week_definition=iso_week

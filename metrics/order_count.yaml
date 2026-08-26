@@ -1,0 +1,14 @@
+name: order_count
+version: 1
+label: 订单数
+description: 去重后的订单数量。
+model: analytics.fct_order_items
+expression: order_id
+aggregation: count_distinct
+time_dimension: order_purchase_at
+grain: order
+allowed_dimensions: [customer_state, product_category, seller_state, month]
+filters: []
+owner: analytics
+status: published
+

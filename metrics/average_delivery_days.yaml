@@ -1,0 +1,14 @@
+name: average_delivery_days
+version: 1
+label: 平均交付天数
+description: 从下单到客户收货的平均天数。
+model: analytics.fct_orders
+expression: "dateDiff('day', order_purchase_at, order_delivered_customer_at)"
+aggregation: avg
+time_dimension: order_purchase_at
+grain: order
+allowed_dimensions: [customer_state, month]
+filters: ["order_status = 'delivered'"]
+owner: logistics_analytics
+status: published
+

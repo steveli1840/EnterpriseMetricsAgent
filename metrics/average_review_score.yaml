@@ -1,0 +1,14 @@
+name: average_review_score
+version: 1
+label: 平均评论分
+description: 已提交评论的平均评分。
+model: analytics.fct_reviews
+expression: review_score
+aggregation: avg
+time_dimension: review_created_at
+grain: review
+allowed_dimensions: [customer_state, month]
+filters: []
+owner: customer_experience
+status: published
+

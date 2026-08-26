@@ -1,0 +1,14 @@
+name: freight_amount
+version: 1
+label: 运费金额
+description: 已交付订单的运费总额。
+model: analytics.fct_order_items
+expression: freight_value
+aggregation: sum
+time_dimension: order_purchase_at
+grain: order_item
+allowed_dimensions: [customer_state, product_category, seller_state, month]
+filters: ["order_status = 'delivered'"]
+owner: logistics_analytics
+status: published
+
