@@ -60,6 +60,11 @@ conflicts with an existing local ClickHouse-compatible service. Override it with
 - `各州平均评论分是多少？`
 - `已交付收入采用什么口径？`
 
+## Demo
+- 已交付收入采用什么口径？ → 「先对齐口径，不查库」  
+- 2018 年 1 月各州已交付收入是多少？ → 指 SQL、证据、指标版本  
+- 各商品品类的订单数是多少？ → 「换指标换维度，不是一条死 SQL」
+
 Every successful response contains the final SQL and an Evidence Rail showing the metric version,
 time range, schema source, SQL policy, query ID, row count, and runtime. Admin users can inspect
 and configure warehouse connections from the data-source governance page; the active connection is
